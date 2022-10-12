@@ -2,7 +2,6 @@ class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
 
   #posts routes
-
   get "/posts" do
     posts = Post.all.limit(10)
     updated_posts = posts.map do |post|
