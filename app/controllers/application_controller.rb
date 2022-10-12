@@ -8,8 +8,8 @@ class ApplicationController < Sinatra::Base
     updated_posts = posts.map do |post|
       {
         id: post.id,
-        post_title: post.title,
-        post_content: post.content,
+        title: post.title,
+        content: post.content,
       }
     end
     updated_posts.to_json
@@ -18,8 +18,7 @@ class ApplicationController < Sinatra::Base
   post "/posts" do
     post = Post.create(
       title:params[:title],
-      content:params[:content],
-      user_id:params[:user]
+      content:params[:content]
      )
     post.to_json
   end
