@@ -33,4 +33,8 @@ class ApplicationController < Sinatra::Base
         }
       updated_post.to_json
   end
+
+  delete '/posts/:id' do
+    Post.get(params[:id]).destroy
+  end
 end
