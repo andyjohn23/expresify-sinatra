@@ -10,6 +10,7 @@ class ApplicationController < Sinatra::Base
         id: post.id,
         title: post.title,
         content: post.content,
+        likes: post.likes || 0
       }
     end
     updated_posts.to_json
@@ -23,6 +24,16 @@ class ApplicationController < Sinatra::Base
     post.to_json
   end
 
+  get "/posts/:id" do
+    post = Post.find(params[:id])
+      updated_post = {
+          id: post.id,
+          title: post.title,
+          content: post.content
+        }
+      updated_post.to_json
+  end
+
   patch "/posts/:id" do
     post = Post.find(params[:id])
       updated_post = {
@@ -34,6 +45,7 @@ class ApplicationController < Sinatra::Base
   end
 
   delete '/posts/:id' do
-    Post.get(params[:id]).destroy
+    post = Post.find(params[:id])
+    post.destroy
   end
 end
