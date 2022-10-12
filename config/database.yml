@@ -8,7 +8,7 @@ default: &default
 development:
   <<: *default
   encoding: unicode
-  database: expressify_development
+  database: expressify_sinatra_development
 
 production:
   <<: *default
