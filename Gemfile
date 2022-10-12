@@ -15,6 +15,7 @@ group :development do
   gem "pry", "~> 0.14.1"
   gem "rerun"
   gem "thin", "~> 1.8"
+  gem 'shotgun'
 end
 
 group :test do
