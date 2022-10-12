@@ -3,7 +3,7 @@ class ApplicationController < Sinatra::Base
 
   #posts routes
 
-  get "/post" do
+  get "/posts" do
     posts = Post.all.limit(10)
     updated_posts = posts.map do |post|
       {
@@ -53,7 +53,6 @@ class ApplicationController < Sinatra::Base
 
     if user == nil
       new_user = User.create(
-        name:params[:name],
         username:params[:username],
         email:params[:email],
         password:params[:password]
@@ -71,8 +70,6 @@ class ApplicationController < Sinatra::Base
     if user && user.authenticate(params[:password])
       user_data = {
           id: user.id,
-          name: user.name,
-          username: user.username,
           email: user.email
         }
       user_data.to_json
@@ -85,12 +82,10 @@ class ApplicationController < Sinatra::Base
   patch "/users/:id" do
     user = User.find(params[:id])
     user.update(
-      name:params[:name],
       username:params[:username]
       )
     user_data = {
       id: user.id,
-      name: user.name,
       username: user.username,
       email: user.email
     }
